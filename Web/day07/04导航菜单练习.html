@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+  <div id="app">
+    <el-menu :default-active="index" mode="horizontal" @select="handleSelect">
+      <el-menu-item v-for="category in arr" :index="category.id + ''">{{ category.name }}</el-menu-item>
+    </el-menu>
+  </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+  let v = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        arr: [
+          {id: 1, name: "品牌男装"},
+          {id: 2, name: "医药健康"},
+          {id: 3, name: "数码科技"},
+          {id: 4, name: "精品女装"}
+        ],
+        index: "1"
+      }
+    },
+    methods:{
+      handleSelect(key, keyPath) {
+        v.$message("" + key);
+        if (key == "2") {
+          alert("点击了医药健康");
+        }
+      }
+    }
+  })
+</script>
+</html>

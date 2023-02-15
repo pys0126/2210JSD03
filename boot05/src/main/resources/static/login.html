@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+    <h1>登录页面</h1>
+    <input type="text" placeholder="用户名" v-model="user.username">
+    <input type="text" placeholder="密码" v-model="user.password">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: "body > div",
+            data: {
+                user: {
+                    username: "",
+                    password: ""
+                }
+            },
+            methods: {
+                login() {
+                    axios.post("/login", this.user).then(function (response) {
+                        if (response.data === 1) {
+                            alert("登录成功!");
+                            location.href = "/";
+                        } else if (response.data === 2) {
+                            alert("密码错误!");
+                        } else {
+                            alert("用户名不存在!");
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

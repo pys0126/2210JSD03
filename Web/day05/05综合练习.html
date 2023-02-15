@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <caption>个人信息</caption>
+        <tr>
+            <td>照片: </td>
+            <td id="head_td"></td>
+        </tr>
+        <tr>
+            <td>姓名: </td>
+            <td id="name_td"></td>
+        </tr>
+        <tr>
+            <td>年龄: </td>
+            <td id="age_td"></td>
+        </tr>
+        <tr>
+            <td>好友: </td>
+            <td id="friend_td"></td>
+        </tr>
+    </table>
+    <input type="button" value="请求数据" onclick="f();">
+
+    <script>
+        let headTd = document.querySelector("#head_td");
+        let nameTd = document.querySelector("#name_td");
+        let ageTd = document.querySelector("#age_td");
+        let friendTd = document.querySelector("#friend_td");
+        function f() {
+            let person = {
+                name: "苍老师", 
+                age: "18", 
+                url: "a.jpg",
+                friends: ["传奇哥", "克晶姐", "我自己"]
+            };
+            nameTd.innerText = person.name;
+            ageTd.innerText = person.age;
+            let img = document.createElement("img");
+            img.src = person.url;
+            img.width = 100;
+            headTd.append(img);
+            let ul = document.createElement("ul");
+            for (let friend of person.friends) {
+                let li = document.createElement("li");
+                li.innerText = friend;
+                ul.appendChild(li);
+            }
+            friendTd.append(ul);
+        }
+    </script>
+</body>
+</html>

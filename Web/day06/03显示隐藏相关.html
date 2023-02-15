@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        {{ info }}
+        <p v-if="isVisible">刘德华</p>
+        <p v-else>张学友</p>
+        <p v-show="isVisible">郭富城</p>
+    </div>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        let v = new Vue({
+            el: "body > div",
+            data: {
+                isVisible: true
+            },
+            methods: {
+            
+            }
+        });
+    </script>
+</body>
+</html>

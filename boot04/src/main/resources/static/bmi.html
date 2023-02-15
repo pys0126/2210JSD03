@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI测试</title>
+</head>
+<body>
+    <h1>BMI测试页面</h1>
+    <div>
+        <input type="text" placeholder="身高" v-model="h">
+        <input type="text" placeholder="体重" v-model="w">
+        <input type="button" value="提交" @click="send();">
+        <h2>结果: {{ info }}</h2>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: "body > div",
+            data: {
+                info: "无",
+                h: "",
+                w: ""
+            },
+            methods: {
+                send() {
+                    axios.get("/bmi?h=" + this.h + "&w=" + this.w).then(function (response) {
+                        this.info = response.data;
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

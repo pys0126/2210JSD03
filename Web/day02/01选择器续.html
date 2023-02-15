@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*子孙后代选择器*/
+        /*body div div p {color: pink}*/
+        /*子元素选择器*/
+        body>div>div>p {color: pink}
+        /*伪类选择器*/
+        /*未访问*/
+        a:link {
+            color: red
+        }
+        /*访问过*/
+        a:visited {
+            color: green;
+        }
+        /*悬停*/
+        a:hover {
+            color: yellow;
+        }
+        /*激活(点击)*/
+        a:active {
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+<a href="http://www.baidu.com">超链接1</a>
+<a href="http://www.qq.com">超链接2</a>
+<p>p1</p>
+<div>
+    <p>p2</p>
+</div>
+<div>
+    <div>
+        <p>p3</p>
+    </div>
+    <div>
+        <p>p4</p>
+        <div>
+            <p>p5</p>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

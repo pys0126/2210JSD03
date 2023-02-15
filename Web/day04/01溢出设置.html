@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+            /*溢出设置,设置超出的部分显示还是隐藏
+            visible显示(默认)
+            hidden隐藏
+            scroll超出部分滚动显示
+            */
+            overflow: scroll;
+        }
+        body > img {
+            width: 100px;
+            /*设置行内及行内块元素垂直对其方式
+            baseline 基线对齐(默认)
+            top上对齐
+            middle中间对齐
+            bottom下对齐
+            */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <img src="../b.jpg" alt="">
+    <div>
+        <img src="../b.jpg" alt="">
+    </div>
+</body>
+</html>

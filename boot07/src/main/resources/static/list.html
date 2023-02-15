@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表</title>
+</head>
+<body>
+    <div>
+        <h1>列表页面</h1>
+        <div v-for="i in arr">
+            <h3>{{ i.title }}</h3>
+            <p>{{ i.created }} <a href="javascript:void(0);" @click="del(i.id, i.urls)">删除</a></p>
+            <img :src="url" v-for="url in i.urls.split(',')" style="width: 200px;">
+        </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: "body > div",
+            data: {
+                arr: []
+            },
+            methods: {
+                del(id) {
+                    if (confirm("确认删除吗？")) {
+                        axios.get("/delete?id=" + id).then(function () {
+                            alert("删除成功！");
+                            location.reload();
+                        });
+                    }
+                }
+            },
+            created() {
+                let _this = this;
+                axios.get("/select").then(function (response) {
+                    _this.arr = response.data;
+                    // for (let image of _this.arr) {
+                    //     image.arr = image.urls.split(",");
+                    // }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

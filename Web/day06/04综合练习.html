@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <h1>员工管理系统</h1>
+        <div v-if="!isLogin">
+            <a href="javascript:void(0);">注册</a>
+            <a href="javascript:void(0);" @click="login();">登录</a>
+        </div>
+        <div v-else>
+            <input type="text" v-model="newName">
+            <input type="button" value="添加员工" @click="add();">
+            <a href="javascript:void(0);" @click="logout();">退出登录</a>
+        </div>
+        <table border="1">
+            <caption>员工列表</caption>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th v-if="isLogin">操作</th>
+            </tr>
+            <tr v-for="(name, i) in arr">
+                <td>{{ i+1 }}</td>
+                <td>{{ name }}</td>
+                <td v-if="isLogin">
+                    <input type="button" value="删除" @click="del(i);">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        let v = new Vue({
+            el: "body > div",
+            data: {
+                isLogin: false,
+                arr: ["刘备", "关羽", "张飞"],
+                newName: ""
+            },
+            methods: {
+                del(i) {
+                    v.arr.splice(i, 1);
+                },
+                add() {
+                    v.arr.push(v.newName);
+                },
+                login() {
+                    v.isLogin = true;
+                },
+                logout() {
+                    v.isLogin = false;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

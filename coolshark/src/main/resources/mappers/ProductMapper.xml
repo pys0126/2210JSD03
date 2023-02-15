@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.coolshark.mapper.ProductMapper">
+    <insert id="insert">
+        INSERT INTO product VALUES(NULL, #{title}, #{price}, #{oldPrice}, #{saleCount}, #{num}, #{categoryId}, #{url}, #{created}, 0)
+    </insert>
+
+    <select id="select" resultType="cn.tedu.coolshark.pojo.vo.ProductAdminVo">
+        SELECT p.id id, title, price, p.old_price oldPrice, p.sale_count saleCount, num, url, c.name categoryName FROM product p JOIN category c on p.category_id = c.id
+    </select>
+
+    <select id="selectUrlById" resultType="string">
+        SELECT url FROM product WHERE id=#{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM product WHERE id=#{id}
+    </delete>
+
+    <select id="selectById" resultType="cn.tedu.coolshark.pojo.vo.ProductUpdateVo">
+        SELECT id, title, price, old_price oldPrice, sale_count saleCount, num, category_id categoryId, url FROM product WHERE id=#{id}
+    </select>
+
+    <update id="update">
+        UPDATE product SET title=#{title}, price=#{price}, old_price=#{oldPrice}, sale_count=#{saleCount}, num=#{num}, category_id=#{categoryId}, url=#{url} WHERE id=#{id}
+    </update>
+
+    <select id="selectForIndex" resultType="cn.tedu.coolshark.pojo.vo.ProductIndexVo">
+        SELECT id, title, price, old_price oldPrice, sale_count saleCount, url FROM product
+    </select>
+
+    <select id="selectForTop" resultType="cn.tedu.coolshark.pojo.vo.ProductTopVo">
+        SELECT id, title, sale_count saleCount FROM product ORDER BY sale_count DESC limit 6
+    </select>
+
+    <select id="selectByCid" resultType="cn.tedu.coolshark.pojo.vo.ProductIndexVo">
+        SELECT id, title, price, old_price oldPrice, sale_count saleCount, url FROM product WHERE category_id=#{id}
+    </select>
+
+    <select id="selectByWd" resultType="cn.tedu.coolshark.pojo.vo.ProductIndexVo">
+        SELECT id, title, price, old_price oldPrice, sale_count saleCount, url FROM product WHERE title LIKE CONCAT('%', #{wd}, '%')
+    </select>
+
+    <select id="selectForDetailById" resultType="cn.tedu.coolshark.pojo.vo.ProductDetailVo">
+        SELECT id, title, price, old_price oldPrice, sale_count saleCount, url, view_count viewCount, created FROM product WHERE id=#{id}
+    </select>
+
+    <update id="updateViewCountById">
+        UPDATE product SET view_count=view_count+1 WHERE id=#{id}
+    </update>
+</mapper>

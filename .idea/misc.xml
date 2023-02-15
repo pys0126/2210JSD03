@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/boot01/pom.xml" />
+        <option value="$PROJECT_DIR$/boot02/pom.xml" />
+        <option value="$PROJECT_DIR$/boot03/pom.xml" />
+        <option value="$PROJECT_DIR$/boot031/pom.xml" />
+        <option value="$PROJECT_DIR$/boot04/pom.xml" />
+        <option value="$PROJECT_DIR$/boot05/pom.xml" />
+        <option value="$PROJECT_DIR$/boot06/pom.xml" />
+        <option value="$PROJECT_DIR$/boot07/pom.xml" />
+        <option value="$PROJECT_DIR$/boot06-1/pom.xml" />
+        <option value="$PROJECT_DIR$/boot08/pom.xml" />
+        <option value="$PROJECT_DIR$/boot09/pom.xml" />
+        <option value="$PROJECT_DIR$/weibo/pom.xml" />
+        <option value="$PROJECT_DIR$/coolshark/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

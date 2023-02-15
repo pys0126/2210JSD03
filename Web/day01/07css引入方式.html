@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--内部样式: 可以当前页面复用,不能多页面复用-->
+    <style>
+        /*标签名选择器:通过标签的名称选取页面中所有同名标签*/
+        h2{color: blue}
+    </style>
+    <!--引入外部的css样式文件-->
+    <link rel="stylesheet" href="my.css">
+</head>
+<body>
+<!--内联样式,不能复用-->
+<h1 style="color: red">内联样式1</h1>
+<h1 style="color: red">内联样式2</h1>
+<h2 style="color: pink">内部样式1</h2>
+<h2>内部样式2</h2>
+<h3>外部样式1</h3>
+<h3>外部样式2</h3>
+</body>
+</html>

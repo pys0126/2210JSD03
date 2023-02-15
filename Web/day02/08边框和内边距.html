@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #d1 {
+            width: 100px;
+            height: 100px;
+            border: 1px dotted red;
+            border-radius: 100px;
+        }
+        #d2 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            /*给元素添加内边距,默认情况下会改变元素的宽高*/
+            padding-left: 30px;
+            padding-top: 50px;
+            /*添加以下样式后内边距不再影响宽高*/
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<div id="d2">内边距</div>
+<div id="d1">边框测试</div>
+</body>
+</html>

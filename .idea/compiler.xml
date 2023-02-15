@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="coolshark" />
+        <module name="jdbc01" />
+        <module name="jdbc02" />
+        <module name="jdbc03" />
+        <module name="boot09" />
+        <module name="boot08" />
+        <module name="boot07" />
+        <module name="boot06" />
+        <module name="weibo" />
+        <module name="boot06-1" />
+        <module name="boot01" />
+        <module name="boot05" />
+        <module name="boot04" />
+        <module name="boot03" />
+        <module name="boot02" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="boot031" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="boot01" options="-parameters" />
+      <module name="boot02" options="-parameters" />
+      <module name="boot03" options="-parameters" />
+      <module name="boot031" options="-parameters" />
+      <module name="boot04" options="-parameters" />
+      <module name="boot05" options="-parameters" />
+      <module name="boot06" options="-parameters" />
+      <module name="boot06-1" options="-parameters" />
+      <module name="boot07" options="-parameters" />
+      <module name="boot08" options="-parameters" />
+      <module name="boot09" options="-parameters" />
+      <module name="coolshark" options="-parameters" />
+      <module name="weibo" options="-parameters" />
+    </option>
+  </component>
+</project>

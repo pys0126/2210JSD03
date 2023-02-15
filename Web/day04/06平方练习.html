@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" placeholder="请输入一个数字">
+    <input type="button" value="平方" onclick="f();">
+    <div>结果: <span></span></div>
+
+    <script>
+        function f() {
+            let i = document.querySelector("input");
+            let s = document.querySelector("span");
+            if (isNaN(i.value)) {
+                s.innerText = "输入错误!";
+                return;
+            }
+            // s.innerText = i.value * i.value;
+            // s.innerText = parseFloat(i.value) + parseFloat(i.value);
+            s.innerText = i.value * 1 + i.value * 1;
+            
+        }
+    </script>
+</body>
+</html>

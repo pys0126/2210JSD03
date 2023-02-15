@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        {{ info }}
+        <input type="text" :value="info">
+        <input type="text" v-bind:value="info">
+        <a :href="url">超链接</a>
+        <img :src="imgName" alt="">
+        <p v-text="info"></p>
+    </div>
+
+    <script src="js/vue.min.js"></script>
+    <script>
+        let v = new Vue({
+            el: "body > div",
+            data: {
+                info: "属性绑定测试",
+                url: "http://www.baidu.com",
+                imgName: "a.jpg"
+            }
+        });
+    </script>
+</body>
+</html>

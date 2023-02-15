@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font: 12px "simhei", Arial, Helvetica, sans-serif;
+            color: #666;
+        }
+        body > div {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        #t_l_div {
+            width: 611px;
+            height: 376px;
+            background-color: #e8e8e8;
+            float: left;
+        }
+        #t_r_div {
+            width: 375px;
+            height: 376px;
+            background-color: #e8e8e8;
+            float: right;
+        }
+        body > div > div {
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        #b_l_div {
+            width: 366px;
+            height: 233px;
+            background-color: #e8e8e8;
+            float: left;
+        }
+        #b_r_div {
+            float: right;
+        }
+        #b_r_div > div {
+            width: 198px;
+            height: 233px;
+            background-color: #e8e8e8;
+            float: left;
+            margin-left: 12px;
+        }
+        #t_l_div>div{
+            width: 245px;
+            height: 232px;
+            margin: 68px 0 0 36px;
+        }
+        .title_p{
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+        .price_p{
+            font-size: 24px;
+            color: #0aa1ed;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+        #t_div a{
+            background-color: #0aa1ed;
+            width: 132px;
+            height: 40px;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            display: block;
+            text-align: center;
+            line-height: 40px;
+            font-size: 20px;
+            /*设置显示层级在图片的上面*/
+            position: relative;
+            z-index: 1;
+        }
+        /****************************/
+        #t_l_div{
+            position: relative;/*做参照物*/
+        }
+        #t_l_div img{
+            width: 318px;
+            height: 319px;
+            /*设置绝对定位 相对于左上的div做偏移*/
+            position: absolute;
+            right: 30px;
+            top: 30px;
+        }
+        /****************************/
+        /**************右上相关样式***************/
+        #t_r_div>div{
+            width: 253px;
+            height: 232px;
+            margin: 39px 0 0 25px;
+        }
+        #t_r_div{
+            position: relative;/*设置参照物*/
+        }
+        #t_r_div img{
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+        /**************右上相关样式***************/
+        /**************左下相关样式************/
+        #top_div{
+            height: 35px;
+            background-color: #0aa1ed;
+        }
+        #top_div>img{
+            margin-top: 10px;
+        }
+        #b_l_div>div{
+            padding-left: 10px;
+        }
+        #top_div>span{
+            font-size: 16px;
+            color: white;
+            position: relative;
+            bottom: 5px;
+        }
+        .c1>p{
+            color: #62B5EC;
+            margin: 20px 0 10px 0;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            overflow: hidden;
+        }
+        li{
+            float: left;
+            margin-right: 10px;
+        }
+        .c1 a{
+            text-decoration: none;
+            color: #0aa1ed;
+        }
+        .c1 a:hover{
+            color: #0a7eb8;
+        }
+        /**************左下相关样式************/
+        /****************右下三个小的div样式*************/
+        #b_r_div{
+            text-align: center;
+        }
+        .b_title_p{
+            margin: 0;
+            color: black;
+        }
+        .b_price_p{
+            margin: 6px 0;
+            color: #0aa1ed;
+            font-weight: bold;
+        }
+        #b_r_div a{
+            color: white;
+            background-color: #0aa1ed;
+            width: 100px;
+            height: 24px;
+            line-height: 24px;
+            display: inline-block;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        /****************右下三个小的div样式*************/
+        img{
+            /*设置动画的持续时间  1s=1秒*/
+            transition-duration: 1s;
+        }
+        img:hover{
+            /*设置图片缩放1.1倍*/
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div id="t_div">
+        <div id="t_l_div">
+            <div>
+                <p class="title_p">灵越 燃7000系列</p>
+                <p>酷睿双核i5处理器|256GB SSD| 8GB内存<br>
+                    英特尔HD显卡620含共享显卡内存</p>
+                <p class="price_p">￥4999.00</p>
+                <a href="">查看详情</a>
+            </div>
+            <img src="http://doc.canglaoshi.org/tstore_v1/images/itemCat/study_computer_img1.png" alt="">
+        </div>
+        <div id="t_r_div">
+            <!--************************-->
+            <div>
+                <p class="title_p">颜值 框不住</p>
+                <p>酷睿双核i5处理器|256GB SSD| 8GB内存<br>
+                    英特尔HD显卡620含共享显卡内存</p>
+                <p class="price_p">￥6888.00</p>
+                <a href="">查看详情</a>
+            </div>
+            <img src="http://doc.canglaoshi.org/tstore_v1/images/itemCat/study_computer_img2.png" alt="">
+            <!--************************-->
+        </div>
+    </div>
+    <div id="b_div">
+        <div id="b_l_div">
+            <!--****************2222******************-->
+            <div id="top_div">
+                <img src="http://doc.canglaoshi.org/tstore_v1/images/itemCat/computer_icon1.png">
+                <span>电脑,办公/1F</span>
+            </div>
+            <div class="c1">
+                <p>电脑整机</p>
+                <ul>
+                    <li><a href="">笔记本</a></li><li><a href="">游戏机</a></li>
+                    <li><a href="">台式机</a></li><li><a href="">一体机</a></li>
+                    <li><a href="">服务器</a></li><li><a href="">联想</a></li>
+                </ul>
+            </div>
+            <div class="c1">
+                <p>电脑配件</p>
+                <ul>
+                    <li><a href="">CPU</a></li><li><a href="">SSD硬盘</a></li>
+                    <li><a href="">显示器</a></li><li><a href="">显卡</a></li>
+                    <li><a href="">组装机</a></li><li><a href="">机箱</a></li>
+                </ul>
+            </div>
+            <div class="c1">
+                <p>外设/游戏</p>
+                <ul>
+                    <li><a href="">键盘</a></li><li><a href="">鼠标</a></li>
+                    <li><a href="">U盘</a></li><li><a href="">移动硬盘</a></li>
+                    <li><a href="">游戏设备</a></li><li><a href="">智能单车</a></li>
+                </ul>
+            </div>
+            <!--****************2222******************-->
+        </div>
+        <div id="b_r_div">
+            <div>
+                <!--***************44444444****************-->
+                <img src="http://doc.canglaoshi.org/tstore_v1/images/itemCat/study_computer_img3.png">
+                <p class="b_title_p">戴尔(DELL)XPS13-9360-R1609 13.3英寸微边框笔记本电脑</p>
+                <p class="b_price_p">￥4600.00</p>
+                <a href="">查看详情</a>
+                <!--***************44444444****************-->
+            </div>
+            <div>
+                <!--*****************444444444**************-->
+                <img src="http://doc.canglaoshi.org/tstore_v1/images/itemCat/study_computer_img4.png">
+                <p class="b_title_p">戴尔(DELL)XPS13-9360-R1609 13.3英寸微边框笔记本电脑</p>
+                <p class="b_price_p">￥5600.00</p>
+                <a href="">查看详情</a>
+                <!--****************44444444***************-->
+            </div>
+            <div>
+                <!--****************444444***************-->
+                <img src="http://doc.canglaoshi.org/tstore_v1/images/itemCat/study_computer_img5.png">
+                <p class="b_title_p">戴尔(DELL)XPS13-9360-R1609 13.3英寸微边框笔记本电脑</p>
+                <p class="b_price_p">￥6600.00</p>
+                <a href="">查看详情</a>
+                <!--****************444444***************-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

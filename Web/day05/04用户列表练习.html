@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><Title></Title></title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>昵称</th>
+        </tr>
+    </table>
+
+    <script>
+        let arr = [
+            {username: "tom", password: "123456", nickname: "汤姆"},
+            {username: "jerry", password: "aabbcc", nickname: "杰瑞"},
+            {username: "lucy", password: "xxyyzz", nickname: "汤姆"}
+        ];
+        let table = document.querySelector("table");
+        for (let user of arr) {
+            let tr = document.createElement("tr");
+            let usernameTd = document.createElement("td");
+            let passwordTd = document.createElement("td");
+            let nicknameTd = document.createElement("td");
+            usernameTd.innerText = user.username;
+            passwordTd.innerText = user.password;
+            nicknameTd.innerText = user.nickname;
+            tr.append(usernameTd, passwordTd, nicknameTd);
+            table.append(tr);
+        }
+    </script>
+</body>
+</html>

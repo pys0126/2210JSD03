@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改商品</title>
+</head>
+<body>
+    <div>
+        <h1>修改商品页面</h1>
+        <input type="text" placeholder="ID" v-model="p.id" disabled>
+        <input type="text" placeholder="标题" v-model="p.title">
+        <input type="text" placeholder="价格" v-model="p.price">
+        <input type="text" placeholder="库存" v-model="p.num">
+        <input type="button" value="修改" @click="update()">
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: "body > div",
+            data: {
+                p: {
+                    title: "",
+                    price: "",
+                    num: ""
+                }
+            },
+            methods: {
+                update() {
+                    axios.post("/update", this.p).then(function () {
+                        alert("修改成功！");
+                        location.href = "/list.htm";
+                    });
+                }
+            },
+            created() {
+                let _this = this;
+                axios.get("/selectById" + location.search).then(function (response) {
+                    _this.p = response.data;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

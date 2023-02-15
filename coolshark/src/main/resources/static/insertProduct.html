@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <style>
+        .el-page-header__content {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-page-header style="background-color: #0096dc;color: white;line-height: 60px" @back="goBack" content="添加商品页面">
+    </el-page-header>
+    <!--表单开始-->
+    <el-card style="width: 600px;height: 700px;margin: 0 auto">
+        <el-form label-width="80px">
+            <el-form-item label="商品标题">
+                <el-input type="text" v-model="p.title"></el-input>
+            </el-form-item>
+            <el-form-item label="商品价格">
+                <el-input type="text" v-model="p.price"></el-input>
+            </el-form-item>
+            <el-form-item label="商品原价">
+                <el-input type="text" v-model="p.oldPrice"></el-input>
+            </el-form-item>
+            <el-form-item label="商品销量">
+                <el-input type="text" v-model="p.saleCount"></el-input>
+            </el-form-item>
+            <el-form-item label="商品库存">
+                <el-input type="text" v-model="p.num"></el-input>
+            </el-form-item>
+            <el-form-item label="商品分类">
+                <el-select placeholder="请选择" v-model="p.categoryId">
+                    <el-option v-for="c in arr" :label="c.name" :value="c.id"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="商品图片">
+                <!--上传组件开始-->
+                <el-upload
+                        action="/upload"
+                        name="picFile"
+                        limit="1"
+                        list-type="picture-card"
+                        :on-success="handleSuccess"
+                        :on-preview="handlePictureCardPreview"
+                        :on-remove="handleRemove">
+                    <i class="el-icon-plus"></i>
+                </el-upload>
+                <el-dialog :visible.sync="dialogVisible">
+                    <img width="100%" :src="dialogImageUrl" alt="">
+                </el-dialog>
+                <!--上传组件结束-->
+            </el-form-item>
+            <el-form-item>
+                <el-button type="success" @click="upload()">上传商品</el-button>
+            </el-form-item>
+        </el-form>
+    </el-card>
+    <!--表单结束-->
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                p: {
+                    title: "",
+                    price: "",
+                    oldPrice: "",
+                    saleCount: "",
+                    num: "",
+                    categoryId: "",
+                    url: ""
+                },
+                dialogImageUrl: "",
+                dialogVisible: false,
+                arr: [{id: "", name: ""}]
+            }
+        },
+        methods: {
+            upload() {
+                if(v.p.url == "") {
+                    v.$message.error("请选择上传的图片！");
+                    return;
+                }
+                axios.post("/product/insert", v.p).then(function (response) {
+                    alert("添加完成！");
+                    location.href = "/admin.html?currentIndex=3-1";
+                });
+            },
+            goBack() {
+                console.log('go back');
+                //返回上一页面
+                history.back();
+            },
+            handleRemove(file, fileList) {
+                axios.get("/remove?url=" + p.url).then(function () {
+                    v.p.url = "";
+                    console.log("服务器图片删除完成！");
+                });
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            },
+            handleSuccess(response, file, fileList) {
+                v.p.url = response;
+            }
+        },
+        created() {
+            axios.get("/category/select").then(function (response) {
+                v.arr = response.data;
+            });
+        }
+    })
+</script>
+</html>

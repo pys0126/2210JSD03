@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table border="1">
+        <caption>商品列表</caption>
+        <tr>
+            <th>商品标题</th>
+            <th>商品价格</th>
+            <th>商品库存</th>
+        </tr>
+    </table>
+
+    <script>
+        // 实例化一个对象
+        let p1 = {
+            name: "张三",
+            age: 18,
+            run: function() {
+                console.log(this.name + ": " + this.age);
+            }
+        };
+        p1.run();
+
+        let p2 = {};
+        p2.name = "刘备";
+        p2.age = 30;
+        p2.run = function() {
+            console.log(this.name + ": " + this.age);
+        }
+        p2.run();
+
+        let product = {title: "小米手机", price: 3000, num: 100};
+        let arr = [
+            {title: "小米手机", price: 3000, num: 100},
+            {title: "华为手机", price: 4000, num: 200},
+            {title: "蔚来汽车", price: 500000, num: 300}
+        ];
+        let table = document.querySelector("table");
+        for (let p of arr) {
+            let tr = document.createElement("tr");
+            let titleTd = document.createElement("td");
+            let priceTd = document.createElement("td");
+            let numTd = document.createElement("td");
+            titleTd.innerHTML = p.title;
+            priceTd.innerHTML = p.price;
+            numTd.innerHTML = p.num;
+            tr.append(titleTd, priceTd, numTd);
+            table.append(tr);
+        }
+    </script>
+</body>
+</html>

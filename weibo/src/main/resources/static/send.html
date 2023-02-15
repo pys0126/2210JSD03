@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发微博</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+    <div id="app">
+        <h3>发微博页面</h3>
+        <input type="text" placeholder="请输入内容" v-model="weibo.content">
+        <input type="button" value="发布" @click="send()">
+        <el-upload
+            limit="9"
+            name="picFile"
+            action="/upload"
+            list-type="picture-card"
+            :on-success="handleSuccess"
+            :on-preview="handlePictureCardPreview"
+            :on-remove="handleRemove">
+            <i class="el-icon-plus"></i>
+        </el-upload>
+        <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="">
+        </el-dialog>
+    </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data() {
+            return {
+                dialogImageUrl: '',
+                dialogVisible: false,
+                weibo: {
+                    content: "",
+                    urls: ""
+                },
+                fileList: []
+            }
+        },
+        methods: {
+            send() {
+                if (this.fileList.length === 0) {
+                    alert("请选择图片！");
+                    return;
+                }
+                let arr = [];
+                for (let file of this.fileList) {
+                    arr.push(file.response);
+                }
+                this.weibo.urls = arr.toString();
+                let _this = this;
+                axios.post("/weibo/insert", _this.weibo).then(function (response) {
+                    if (response.data == 1) {
+                        alert("发布成功！");
+                        location.href = "/";
+                    } else {
+                        alert("请先登录！");
+                        location.href = "/login.html";
+                    }
+                });
+            },
+            handleRemove(file, fileList) {
+                this.fileList = fileList;
+                axios.get("/remove?fileName=" + file.response).then(function () {
+                    console.log("删除完成！");
+                });
+            },
+            handlePictureCardPreview(file) {
+                this.dialogImageUrl = file.url;
+                this.dialogVisible = true;
+            },
+            handleSuccess(response, file, fileList) {
+                this.fileList = fileList;
+            }
+        }
+    });
+</script>
+</html>

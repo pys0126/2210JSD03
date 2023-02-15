@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+    <style>
+        .el-header img {
+            vertical-align: middle; /*设置中间对齐*/
+        }
+
+        .el-header a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .el-table .el-table__cell {
+            padding: 0; /*去掉自带的内边距*/
+        }
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <el-container>
+        <el-header height="150px">
+            <div style="width: 1200px;margin: 0 auto">
+                <img src="imgs/logo.png" width="300" alt="">
+                <a href="/">首页</a>
+                <el-divider direction="vertical"></el-divider>
+                <a href="">热点资讯</a>
+                <el-divider direction="vertical"></el-divider>
+                <a href="">商家入驻</a>
+                <el-divider direction="vertical"></el-divider>
+                <a href="">社会招聘</a>
+                <el-divider direction="vertical"></el-divider>
+                <a href="">校园招聘</a>
+                <el-divider direction="vertical"></el-divider>
+                <a href="">帮助</a>
+            </div>
+            <!--导航菜单开始-->
+            <div style="background-color: #0aa1ed">
+                <el-menu style="width: 1200px;margin: 0 auto;border: 0" mode="horizontal" background-color="#0aa1ed"
+                         text-color="#fff" active-text-color="#fff" @select="handleSelect">
+                    <el-menu-item :index="c.id" v-for="c in categoryList">{{ c.name }}</el-menu-item>
+                    <div style="float: right;position: relative;top: 10px">
+                        <el-input placeholder="请输入搜索的内容" v-model="wd">
+                            <!--slot="append"作用是把按钮追加在文本框里面-->
+                            <el-button slot="append" icon="el-icon-search" @click="search()"></el-button>
+                        </el-input>
+                    </div>
+                </el-menu>
+            </div>
+            <!--导航菜单结束-->
+        </el-header>
+        <el-main style="width: 1200px;margin: 0 auto">
+            <!--gutter设置间距-->
+            <el-row gutter="20">
+                <el-col span="12">
+                    <el-card>
+                        <img :src="product.url" width="100%" alt="">
+                    </el-card>
+                </el-col>
+                <el-col span="12">
+                    <p style="font-size: 25px;font-weight: bold">{{ product.title }}</p>
+                    <el-divider></el-divider>
+                    <p style="color: #666;font-size: 15px">
+                        销量: {{ product.saleCount }} 浏览量: {{ product.viewCount }}
+                    </p>
+                    <p style="font-size: 20px;font-weight: bold">
+                        ￥{{ product.price }}
+                        <span style="font-size: 15px;color: #666">
+              原价:<s>{{ product.oldPrice }}</s>
+              </span>
+                    </p>
+                    <!--在上一个布局里面嵌套一个新的布局仍然是24分栏-->
+                    <el-row gutter="20">
+                        <el-col span="8">
+                            <el-card><img src="imgs/ewm.jpg" alt=""></el-card>
+                            <p style="text-align: center">扫码关注公众号</p>
+                        </el-col>
+                        <el-col span="8">
+                            <el-card><img src="imgs/ewm.jpg" alt=""></el-card>
+                            <p style="text-align: center">扫码下载App</p>
+                        </el-col>
+                        <el-col span="8">
+                            <el-card><img src="imgs/ewm.jpg" alt=""></el-card>
+                            <p style="text-align: center">扫码购买商品</p>
+                        </el-col>
+                    </el-row>
+
+                </el-col>
+            </el-row>
+        </el-main>
+        <el-footer>
+            <div style="background-image: url('imgs/wave.png');height: 90px"></div>
+            <div style="background-color: #3f3f3f;text-align: center;
+      color: #b1b1b1;padding: 30px 0">
+                <p>Copyright © 北京达内金桥科技有限公司版权所有 京ICP备12003709号-3 京公网安备 11010802029572号</p>
+                <p>涵盖20余门课程体系，致力于打造权威的IT职业教育学习平台</p>
+                <p>达内在线WWW.TMOOC.CN 专注于IT职业技能培训</p>
+            </div>
+        </el-footer>
+    </el-container>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    let v = new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                wd: "",
+                product: {title: "", price: "", oldPrice: "", url: "", saleCount: "", viewCount: ""},
+                categoryList: [{id: "", name: ""}]
+            }
+        },
+        methods: {
+            search() {
+                location.href = "/result.html?wd=" + v.wd;
+            },
+            handleSelect(key, keyPath) {
+                location.href = "/result.html?id=" + key;
+            }
+        },
+        created() {
+            axios.get("/category/select").then(function (response) {
+                v.categoryList = response.data;
+            });
+            axios.get("/product/selectForDetailById" + location.search).then(function (response) {
+                v.product = response.data;
+            });
+        }
+    })
+</script>
+</html>

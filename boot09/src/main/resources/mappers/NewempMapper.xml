@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.boot09.mapper.NewempMapper">
+    <insert id="insert">
+        INSERT INTO newemp VALUES(NULL, #{name}, #{salary}, #{job})
+    </insert>
+
+    <select id="selectAll" resultType="cn.tedu.boot09.entity.Newemp">
+        SELECT * FROM newemp
+    </select>
+
+    <select id="selectById" resultType="cn.tedu.boot09.entity.Newemp">
+        SELECT * FROM newemp WHERE id=#{id}
+    </select>
+
+    <update id="update">
+        UPDATE newemp
+        <set>
+            <if test="name != null">name=#{name}, </if>
+            <if test="salary != null">salary=#{salary}, </if>
+            <if test="job != null">job=#{job}</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM newemp WHERE id=#{id}
+    </delete>
+
+    <delete id="deleteByIds">
+        DELETE FROM newemp WHERE id in(
+            <foreach collection="array" item="id" separator=",">
+                #{id}
+            </foreach>
+        )
+    </delete>
+
+    <select id="selectCount" resultType="int">
+        SELECT COUNT(*) FROM newemp
+    </select>
+</mapper>

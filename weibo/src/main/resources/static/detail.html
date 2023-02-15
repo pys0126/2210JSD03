@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>微博详情</title>
+</head>
+<body>
+    <div>
+        <h1>微博详情页面</h1>
+        <h2>{{ weibo.nickname }}说：{{ weibo.content }}</h2>
+        <div>发布时间：{{ weibo.created }}</div>
+        <img :src="url" alt="微博图片" v-for="url in weibo.urls.split(',')" style="width: 200px;display: block;margin: 10px 0;">
+        <hr>
+        <div v-if="isLogin">
+            <input type="text" placeholder="说点啥..." v-model="comment.content">
+            <input type="button" value="发表" @click="sendComment()">
+        </div>
+        <div v-else>
+            <span>发表评论请先<a href="/login.html">登录</a></span>
+        </div>
+        <br>
+        <p v-for="comment in commentList" style="margin-bottom: 10px;">
+            <a href="javascript:void(0);" @click="f(comment.nickname);">{{ comment.nickname }}</a>：{{ comment.content }} | {{ comment.created }}
+        </p>
+    </div>
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+<script>
+    new Vue({
+        el: "body > div",
+        data: {
+            isLogin: false,
+            user: {},
+            comment: {
+                w_id: "",
+                content: "",
+                nickname: "",
+            },
+            commentList: [],
+            weibo: {
+                id: "",
+                content: "",
+                nickname: "",
+                urls: "",
+                created: ""
+            }
+        },
+        methods: {
+            f(nickname) {
+                this.comment.content = "@" + nickname + " ";
+            },
+            sendComment() {
+                let _this = this;
+                _this.comment.w_id = _this.weibo.id;
+                if (_this.comment.content.trim() == "") {
+                    alert("请输入评论内容！");
+                    return;
+                }
+                axios.post("/comment/insert", _this.comment).then(function () {
+                    alert("发表成功！");
+                    location.reload();
+                });
+            }
+        },
+        created() {
+            let _this = this;
+            axios.get("/weibo/selectById" + location.search).then(function (response) {
+                _this.weibo = response.data;
+            });
+
+            axios.get("/currentUser").then(function (response) {
+                _this.user = response.data;
+                _this.comment.nickname = _this.user.nickname;
+                _this.isLogin = _this.user !== "";
+            });
+
+            axios.get("/comment/selectByW_id?w_id=" + location.search.split("=")[1]).then(function (response) {
+                _this.commentList = response.data;
+            });
+        }
+    });
+</script>
+</html>

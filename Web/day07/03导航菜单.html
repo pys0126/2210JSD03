@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <!-- import CSS -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.9/theme-chalk/index.css">
+</head>
+<body>
+  <div id="app">
+    <!--default-active设置默认激活位置
+    mode="horizontal"设置为顶栏删除掉为侧栏
+    @select选择事件, 当点击某一个时会触发此事件
+    menu菜单
+    -->
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <el-menu-item index="1">处理中心</el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">我的工作台</template>
+        <el-menu-item index="2-1">选项1</el-menu-item>
+        <el-menu-item index="2-2">选项2</el-menu-item>
+        <el-menu-item index="2-3">选项3</el-menu-item>
+        <el-submenu index="2-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="2-4-1">选项1</el-menu-item>
+          <el-menu-item index="2-4-2">选项2</el-menu-item>
+          <el-menu-item index="2-4-3">选项3</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="3" disabled>消息中心</el-menu-item>
+      <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+    </el-menu>
+    <div class="line"></div>
+    <el-menu
+      :default-active="activeIndex2"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-menu-item index="1">处理中心</el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">我的工作台</template>
+        <el-menu-item index="2-1">选项1</el-menu-item>
+        <el-menu-item index="2-2">选项2</el-menu-item>
+        <el-menu-item index="2-3">选项3</el-menu-item>
+        <el-submenu index="2-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="2-4-1">选项1</el-menu-item>
+          <el-menu-item index="2-4-2">选项2</el-menu-item>
+          <el-menu-item index="2-4-3">选项3</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="3" disabled>消息中心</el-menu-item>
+      <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+    </el-menu>
+    <h1>自定义导航菜单</h1>
+    <el-menu mode="horizontal" background-color="#0aa1ed" text-color="#f00" active-text-color="#0f0">
+      <el-menu-item index="1">首页</el-menu-item>
+      <el-menu-item index="2">直播课</el-menu-item>
+      <el-menu-item index="3">免费课</el-menu-item>
+      <el-menu-item index="4">线下班</el-menu-item>
+      <el-submenu index="5">
+        <template slot="title">关于我们</template>
+        <el-menu-item index="5-1">联系方式</el-menu-item>
+        <el-menu-item index="5-2">厂家介绍</el-menu-item>
+        <el-menu-item index="5-3">投诉建议</el-menu-item>
+      </el-submenu>
+    </el-menu>
+    <h1>自定义侧栏</h1>
+    <el-menu>
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-edit"></i>
+          <span>魏国</span>
+        </template>
+        <el-menu-item index="1-1">曹操</el-menu-item>
+        <el-menu-item index="1-2">司马懿</el-menu-item>
+      </el-submenu>
+      <el-submenu index="2">
+        <template slot="title">
+          <i class="el-icon-edit"></i>
+          <span>蜀国</span>
+        </template>
+        <el-menu-item index="2-1">刘备</el-menu-item>
+        <el-menu-item index="2-2">关羽</el-menu-item>
+      </el-submenu>
+    </el-menu>
+  </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.staticfile.org/vue/2.6.14/vue.min.js"></script>
+<!-- import JavaScript -->
+<script src="https://cdn.staticfile.org/element-ui/2.15.9/index.min.js"></script>
+<script>
+  let v = new Vue({
+    el: '#app',
+    data: function() {
+      return {
+        activeIndex: '1',
+        activeIndex2: '1'
+      }
+    },
+    methods:{
+      handleSelect(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    }
+  })
+</script>
+</html>
